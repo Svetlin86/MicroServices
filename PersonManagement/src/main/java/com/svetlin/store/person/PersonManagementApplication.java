@@ -1,11 +1,11 @@
-package com.svetlin.store.user;
+package com.svetlin.store.person;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserManagementApplication {
+public class PersonManagementApplication {
     public static void main(String[] args) {
-        SpringApplication.run(UserManagementApplication.class, args);
+        SpringApplication.run(PersonManagementApplication.class, args);
     }
 }
