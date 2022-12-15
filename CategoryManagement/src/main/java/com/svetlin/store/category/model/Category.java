@@ -1,4 +1,4 @@
-package com.svetlin.store.category.domain;
+package com.svetlin.store.category.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

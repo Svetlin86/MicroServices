@@ -1,6 +1,6 @@
 package com.svetlin.store.category;
 
-import com.svetlin.store.category.domain.Category;
+import com.svetlin.store.category.model.Category;
 import com.svetlin.store.category.repository.CategoryRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
