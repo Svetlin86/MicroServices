@@ -7,12 +7,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import static javax.persistence.GenerationType.IDENTITY;
+
 @Entity
 @Table(name = "PRODUCT")
 @Accessors(chain = true)
 @Getter
 @Setter
-
 public class Product {
     @Id
     @GeneratedValue(strategy = IDENTITY)
