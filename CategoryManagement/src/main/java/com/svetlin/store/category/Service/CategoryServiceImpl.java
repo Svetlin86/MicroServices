@@ -6,6 +6,7 @@ import com.svetlin.store.category.model.Category;
 import com.svetlin.store.category.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,8 +31,19 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResource getAll() {
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryRepository
+                .findAll(PageRequest.ofSize(10)).toList();
 
-        return null;
+        return (CategoryResource) categories;
+    }
+
+    @Override
+    public Category create(Category category) {
+        return categoryRepository.save(category);
+    }
+
+    @Override
+    public Category updateCategory(Category category) {
+        return categoryRepository.save(category);
     }
 }

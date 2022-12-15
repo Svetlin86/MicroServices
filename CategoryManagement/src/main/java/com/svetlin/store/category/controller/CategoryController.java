@@ -2,11 +2,11 @@ package com.svetlin.store.category.controller;
 
 import com.svetlin.store.category.Service.CategoryService;
 import com.svetlin.store.category.dto.CategoryDto;
+import com.svetlin.store.category.dto.CategoryResource;
+import com.svetlin.store.category.model.Category;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/category")
@@ -18,5 +18,20 @@ public class CategoryController {
     @GetMapping("/{id}")
     public CategoryDto getById(@PathVariable("id") Long id) {
         return categoryService.getById(id);
+    }
+
+    @GetMapping
+    public CategoryResource getAll() {
+        return categoryService.getAll();
+    }
+
+    @PostMapping
+    public ResponseEntity<Category> getAllCategories(Category category) {
+        return ResponseEntity.ok().body(categoryService.create(category));
+    }
+
+    @PutMapping
+    public ResponseEntity<Category> updateProduct(Category category) {
+        return ResponseEntity.ok().body(categoryService.updateCategory(category));
     }
 }
