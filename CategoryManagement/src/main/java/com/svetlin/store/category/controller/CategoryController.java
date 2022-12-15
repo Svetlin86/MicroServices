@@ -16,13 +16,13 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/{id}")
-    public CategoryDto getById(@PathVariable("id") Long id) {
-        return categoryService.getById(id);
+    public ResponseEntity<CategoryDto> getById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(categoryService.getById(id));
     }
 
     @GetMapping
-    public CategoryResource getAll() {
-        return categoryService.getAll();
+    public ResponseEntity<CategoryResource> getAll() {
+        return ResponseEntity.ok().body(categoryService.getAll());
     }
 
     @PostMapping
