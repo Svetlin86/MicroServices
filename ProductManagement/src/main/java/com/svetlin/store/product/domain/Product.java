@@ -1,12 +1,13 @@
 package com.svetlin.store.product.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import javax.persistence.*;
+
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "PRODUCT")
@@ -15,7 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Setter
 public class Product {
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 

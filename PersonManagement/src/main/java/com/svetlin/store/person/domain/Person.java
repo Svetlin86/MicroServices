@@ -1,16 +1,20 @@
 package com.svetlin.store.person.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import static javax.persistence.GenerationType.IDENTITY;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Accessors(chain = true)
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person {
     @Id
     @GeneratedValue(strategy = IDENTITY)

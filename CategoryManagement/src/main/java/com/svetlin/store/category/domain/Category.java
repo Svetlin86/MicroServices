@@ -1,15 +1,9 @@
 package com.svetlin.store.category.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.springframework.data.annotation.Id;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "CATEGORY")
@@ -18,8 +12,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Setter
 public class Category {
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @jakarta.persistence.Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
