@@ -1,25 +1,20 @@
 package com.svetlin.store.category.Service;
 
 import com.svetlin.store.category.dto.CategoryDto;
-import com.svetlin.store.category.dto.CategoryResource;
 import com.svetlin.store.category.model.Category;
 import com.svetlin.store.category.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.data.domain.PageRequest;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final ModelMapper modelMapper = new ModelMapper();
 
-    @Override
     public CategoryDto getById(Long id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(
@@ -31,24 +26,32 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryResource getAll() {
-        List<Category> categories = categoryRepository
-                .findAll(PageRequest.ofSize(10)).toList();
+    public String create(CategoryDto categoryDto) {
 
-        List<CategoryDto> categoryDtos = categories.stream()
-                .map(CategoryDto::from).toList();
+        if (categoryRepository.findById(categoryDto.getId()).isPresent()) {
+            return "Category exists!";
+        }
 
-        return new CategoryResource()
-                .setCategories(categoryDtos);
+        Category category = modelMapper.map(categoryDto, Category.class);
+        categoryRepository.save(category);
+        return "Category created successfully!";
     }
 
     @Override
-    public Category create(Category category) {
-        return categoryRepository.save(category);
+    public List<CategoryDto> getAllCategories() {
+
+        List<Category> categories = categoryRepository.findAll();
+        return categories
+                .stream()
+                .map(category -> modelMapper.map(category, CategoryDto.class))
+                .toList();
     }
 
     @Override
-    public Category updateCategory(Category category) {
-        return categoryRepository.save(category);
+    public String updateCategory(CategoryDto categoryDto) {
+
+        Category category = modelMapper.map(categoryDto, Category.class);
+        categoryRepository.save(category);
+        return "Category updated successfully!";
     }
 }

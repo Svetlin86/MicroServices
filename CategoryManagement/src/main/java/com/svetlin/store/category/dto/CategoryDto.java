@@ -13,9 +13,9 @@ public class CategoryDto {
     private Long id;
     private String name;
 
-    public static CategoryDto from(Category category) {
-        return new CategoryDto()
-                .setId(category.getId())
-                .setName(category.getName());
-    }
+//    public static CategoryDto from(Category category) {
+//        return new CategoryDto()
+//                .setId(category.getId())
+//                .setName(category.getName());
+//    }
 }

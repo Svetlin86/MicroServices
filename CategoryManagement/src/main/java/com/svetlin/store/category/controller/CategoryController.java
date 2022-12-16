@@ -2,11 +2,10 @@ package com.svetlin.store.category.controller;
 
 import com.svetlin.store.category.Service.CategoryService;
 import com.svetlin.store.category.dto.CategoryDto;
-import com.svetlin.store.category.dto.CategoryResource;
-import com.svetlin.store.category.model.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/category")
@@ -15,23 +14,23 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
+    @PostMapping
+    public ResponseEntity<String> create(CategoryDto categoryDto) {
+        return ResponseEntity.ok().body(categoryService.create(categoryDto));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDto> getById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(categoryService.getById(id));
     }
 
     @GetMapping
-    public ResponseEntity<CategoryResource> getAll() {
-        return ResponseEntity.ok().body(categoryService.getAll());
-    }
-
-    @PostMapping
-    public ResponseEntity<Category> getAllCategories(Category category) {
-        return ResponseEntity.ok().body(categoryService.create(category));
+    public  ResponseEntity<List<CategoryDto>> getAllCategories() {
+        return ResponseEntity.ok().body(categoryService.getAllCategories());
     }
 
     @PutMapping
-    public ResponseEntity<Category> updateProduct(Category category) {
-        return ResponseEntity.ok().body(categoryService.updateCategory(category));
+    public ResponseEntity<String> updateProduct(CategoryDto categoryDto) {
+        return ResponseEntity.ok().body(categoryService.updateCategory(categoryDto));
     }
 }

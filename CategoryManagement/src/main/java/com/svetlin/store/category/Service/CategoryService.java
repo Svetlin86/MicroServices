@@ -1,18 +1,16 @@
 package com.svetlin.store.category.Service;
 
 import com.svetlin.store.category.dto.CategoryDto;
-import com.svetlin.store.category.dto.CategoryResource;
-import com.svetlin.store.category.model.Category;
+import java.util.List;
 
 public interface CategoryService {
 
     CategoryDto getById(Long id);
 
-    CategoryResource getAll();
+    String create(CategoryDto category);
 
-    Category create (Category category);
+    List<CategoryDto> getAllCategories();
 
-    Category updateCategory (Category category);
-
+    String updateCategory (CategoryDto category);
 
 }
