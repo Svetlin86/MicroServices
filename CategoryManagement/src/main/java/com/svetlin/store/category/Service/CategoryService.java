@@ -1,6 +1,7 @@
 package com.svetlin.store.category.Service;
 
 import com.svetlin.store.category.dto.CategoryDto;
+
 import java.util.List;
 
 public interface CategoryService {
@@ -11,6 +12,5 @@ public interface CategoryService {
 
     List<CategoryDto> getAllCategories();
 
-    String updateCategory (CategoryDto category);
-
+    String updateCategory(CategoryDto category);
 }

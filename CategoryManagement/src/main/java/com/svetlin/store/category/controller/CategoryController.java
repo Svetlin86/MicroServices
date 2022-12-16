@@ -11,7 +11,6 @@ import java.util.List;
 @RequestMapping("/category")
 @RequiredArgsConstructor
 public class CategoryController {
-
     private final CategoryService categoryService;
 
     @PostMapping
@@ -25,7 +24,7 @@ public class CategoryController {
     }
 
     @GetMapping
-    public  ResponseEntity<List<CategoryDto>> getAllCategories() {
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
         return ResponseEntity.ok().body(categoryService.getAllCategories());
     }
 
