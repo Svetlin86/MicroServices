@@ -6,7 +6,6 @@ import com.svetlin.store.category.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -16,6 +15,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper = new ModelMapper();
 
+    @Override
     public CategoryDto getById(Long id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(
@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public String create(CategoryDto categoryDto) {
+    public String createCategory(CategoryDto categoryDto) {
         if (categoryRepository.findById(categoryDto.getId()).isPresent()) {
             return "Category exists!";
         }
@@ -51,7 +51,8 @@ public class CategoryServiceImpl implements CategoryService {
     public String updateCategory(CategoryDto categoryDto) {
 
         Category category = modelMapper.map(categoryDto, Category.class);
-        categoryRepository.save(category);
+        categoryRepository.save(category.setName(category.getName()));
+
         return "Category updated successfully!";
     }
 }

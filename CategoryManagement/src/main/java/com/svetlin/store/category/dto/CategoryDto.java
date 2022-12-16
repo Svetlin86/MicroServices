@@ -1,6 +1,5 @@
 package com.svetlin.store.category.dto;
 
-import com.svetlin.store.category.model.Category;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;

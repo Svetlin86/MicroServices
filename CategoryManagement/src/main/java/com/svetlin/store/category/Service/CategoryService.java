@@ -8,7 +8,7 @@ public interface CategoryService {
 
     CategoryDto getById(Long id);
 
-    String create(CategoryDto category);
+    String createCategory(CategoryDto category);
 
     List<CategoryDto> getAllCategories();
 
