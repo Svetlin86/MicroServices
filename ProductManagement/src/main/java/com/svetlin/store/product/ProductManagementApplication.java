@@ -1,6 +1,6 @@
 package com.svetlin.store.product;
 
-import com.svetlin.store.product.domain.Product;
+import com.svetlin.store.product.model.Product;
 import com.svetlin.store.product.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

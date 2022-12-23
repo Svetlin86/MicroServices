@@ -1,6 +1,6 @@
 package com.svetlin.store.person;
 
-import com.svetlin.store.person.domain.Person;
+import com.svetlin.store.person.model.Person;
 import com.svetlin.store.person.repository.PersonRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

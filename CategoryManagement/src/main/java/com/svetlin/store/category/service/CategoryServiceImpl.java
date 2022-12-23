@@ -1,4 +1,4 @@
-package com.svetlin.store.category.Service;
+package com.svetlin.store.category.service;
 
 import com.svetlin.store.category.dto.CategoryDto;
 import com.svetlin.store.category.exception.BadRequestException;

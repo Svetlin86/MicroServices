@@ -1,13 +1,14 @@
-package com.svetlin.store.product.domain;
+package com.svetlin.store.product.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "PRODUCT")
@@ -15,13 +16,11 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class Product {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID")
     private Long id;
-
-//    @Version
-//    private Long version;
 
     @Column(unique = true, name = "NAME")
     @NotEmpty(message = "Please specify the name of the product")
@@ -30,10 +29,14 @@ public class Product {
     @Column(name = "PRICE")
     private BigDecimal price;
 
+    @Column(name = "QUANTITY")
+    private int quantity;
+
+//       @Version
+//    private Long version;
+
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "CATEGORY_ID")
 //    private Category category;
 
-    @Column(name = "QUANTITY")
-    private int quantity;
 }

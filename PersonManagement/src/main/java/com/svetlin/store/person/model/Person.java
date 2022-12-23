@@ -1,12 +1,12 @@
-package com.svetlin.store.person.domain;
+package com.svetlin.store.person.model;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import jakarta.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -16,20 +16,22 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Person {
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-//    @Version
-//    private Long version;
-
+    @Column(unique = true, name = "NAME")
     private String name;
 
-    @Column(unique = true, name = "username")
+    @Column(name = "USERNAME")
     private String username;
 
     @NotEmpty(message = "Please enter your password")
     private String password;
+
+//     @Version
+//    private Long version;
 
 //    @ManyToMany(fetch = EAGER)
 //    private List<Role> roles = new ArrayList<>();

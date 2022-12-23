@@ -1,6 +1,6 @@
 package com.svetlin.store.person.repository;
 
-import com.svetlin.store.person.domain.Person;
+import com.svetlin.store.person.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
