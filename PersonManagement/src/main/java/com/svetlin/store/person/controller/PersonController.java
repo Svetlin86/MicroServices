@@ -1,8 +1,6 @@
 package com.svetlin.store.person.controller;
 
-import com.svetlin.store.person.dto.CreatePersonDto;
-import com.svetlin.store.person.dto.GetPersonDto;
-import com.svetlin.store.person.dto.UpdatePersonDto;
+import com.svetlin.store.person.dto.PersonDto;
 import com.svetlin.store.person.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,22 +18,22 @@ public class PersonController {
     private final PersonService personService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<GetPersonDto> getById(@PathVariable("id") Long id) {
+    public ResponseEntity<PersonDto> getById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(personService.getById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<GetPersonDto>> getAllPersons() {
+    public ResponseEntity<List<PersonDto>> getAllPersons() {
         return ResponseEntity.ok().body(personService.getAllPersons());
     }
 
     @PostMapping
-    public ResponseEntity<CreatePersonDto> createPerson(@RequestBody CreatePersonDto createPersonDto) {
+    public ResponseEntity<PersonDto> createPerson(@RequestBody PersonDto createPersonDto) {
         return ResponseEntity.status(CREATED).body(personService.createPerson(createPersonDto));
     }
 
     @PutMapping
-    public ResponseEntity<UpdatePersonDto> updatePerson(@RequestBody UpdatePersonDto updatePersonDto) {
+    public ResponseEntity<PersonDto> updatePerson(@RequestBody PersonDto updatePersonDto) {
         return ResponseEntity.ok().body(personService.updatePerson(updatePersonDto));
     }
 }

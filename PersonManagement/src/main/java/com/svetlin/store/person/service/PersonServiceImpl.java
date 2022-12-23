@@ -1,8 +1,6 @@
 package com.svetlin.store.person.service;
 
-import com.svetlin.store.person.dto.CreatePersonDto;
-import com.svetlin.store.person.dto.GetPersonDto;
-import com.svetlin.store.person.dto.UpdatePersonDto;
+import com.svetlin.store.person.dto.PersonDto;
 import com.svetlin.store.person.exception.BadRequestException;
 import com.svetlin.store.person.model.Person;
 import com.svetlin.store.person.repository.PersonRepository;
@@ -18,46 +16,46 @@ import java.util.Optional;
 public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository personRepository;
-    private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper= new ModelMapper();
 
     @Override
-    public GetPersonDto getById(Long id) {
+    public PersonDto getById(Long id) {
         Person person = personRepository.findById(id)
                 .orElseThrow(
                         () -> new BadRequestException(String.format("Person with id %d not found", id)));
 
-        return modelMapper.map(person, GetPersonDto.class);
+        return modelMapper.map(person, PersonDto.class);
     }
 
     @Override
-    public List<GetPersonDto> getAllPersons() {
+    public List<PersonDto> getAllPersons() {
         List<Person> personList = personRepository.findAll();
 
         return personList
                 .stream()
-                .map(person -> modelMapper.map(person, GetPersonDto.class))
+                .map(person -> modelMapper.map(person, PersonDto.class))
                 .toList();
     }
 
     @Override
-    public CreatePersonDto createPerson(CreatePersonDto createPersonDto) {
+    public PersonDto createPerson(PersonDto createPersonDto) {
         Person person = modelMapper.map(createPersonDto, Person.class);
         Person createdPerson = personRepository.save(person);
 
-        return modelMapper.map(createdPerson, CreatePersonDto.class);
+        return modelMapper.map(createdPerson, PersonDto.class);
     }
 
     @Override
-    public UpdatePersonDto updatePerson(UpdatePersonDto updatePersonDto) {
+    public PersonDto updatePerson(PersonDto updatePersonDto) {
         if (updatePersonDto.getId() == null) {
             throw new RuntimeException("The id must not be null");
         }
         Optional<Person> maybePerson = personRepository.findById(updatePersonDto.getId());
         if (maybePerson.isPresent()) {
-            Person person = modelMapper.map(maybePerson, Person.class);
+            Person person = modelMapper.map(updatePersonDto, Person.class);
             Person updatedPerson = personRepository.save(person);
 
-            return modelMapper.map(updatedPerson, UpdatePersonDto.class);
+            return modelMapper.map(updatedPerson, PersonDto.class);
         }
         throw new RuntimeException("Person with id %d does not exist");
     }

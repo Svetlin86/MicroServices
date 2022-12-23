@@ -7,11 +7,13 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Getter
 @Setter
-public class GetPersonDto {
+public class PersonDto {
 
     private Long id;
 
     private String name;
 
     private String username;
+
+    private String password;
 }
