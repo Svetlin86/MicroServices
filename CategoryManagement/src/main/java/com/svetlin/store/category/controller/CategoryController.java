@@ -5,7 +5,10 @@ import com.svetlin.store.category.dto.CategoryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping("/category")
@@ -14,8 +17,8 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<String> createCategory(CategoryDto categoryDto) {
-        return ResponseEntity.ok().body(categoryService.createCategory(categoryDto));
+    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) {
+        return ResponseEntity.status(CREATED).body(categoryService.createCategory(categoryDto));
     }
 
     @GetMapping("/{id}")
@@ -29,7 +32,7 @@ public class CategoryController {
     }
 
     @PutMapping
-    public ResponseEntity<String> updateProduct(CategoryDto categoryDto) {
+    public ResponseEntity<CategoryDto> updateProduct(@RequestBody CategoryDto categoryDto) {
         return ResponseEntity.ok().body(categoryService.updateCategory(categoryDto));
     }
 }
